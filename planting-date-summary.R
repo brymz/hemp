@@ -126,7 +126,7 @@ ggplot(stand_count_summary_pilot, aes(x=PlantingDate, y=avg_stand_percent)) +
   facet_grid(.~Variety) +
   theme_bw(base_size = 12, base_family = "Helvetica") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("output/stand_count.png")
+ggsave("output/stand_count.png", width = 10, height = 5, units = "in")
 
 stand_count_summary_variety <- stand_count_data %>%
   filter(Experiment == "VarietyTrial") %>% 
@@ -174,13 +174,13 @@ flower_induc_pilot <- left_join(flower_induc_pilot_10, flower_induc_pilot_50)
 write_csv(flower_induc_pilot, "output/flower_induc_pilot.csv")
 
 ggplot(flower_pilot, aes(x=Date, y=Induc_perc)) +
-  geom_point() +
-  geom_vline(data=flower_induc_pilot, aes(xintercept = induc_date), linetype="dashed") +
+  geom_point(size=2) +
+  geom_vline(data=flower_induc_pilot, aes(xintercept = induc_date_50), linetype="dashed") +
   facet_grid(Variety~PlantingDate) +  # scales = "free_x"
   labs(x = "Date", y = "Flower Induction [%]") +
-  theme_bw(base_size = 12, base_family = "Helvetica") +
+  theme_bw(base_size = 18, base_family = "Helvetica") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("output/flower_pilot.png")
+ggsave("output/flower_pilot.png", width = 10, height = 10, units = "in")
 
 #### Variety flowering
 flower_variety <- flower_data %>%
@@ -225,14 +225,14 @@ flower_induc_variety <- left_join(flower_induc_variety_10, flower_induc_variety_
 write_csv(flower_induc_variety, "output/flower_induc_variety.csv")
 
 ggplot(flower_variety, aes(x=Date, y=Induc_perc)) +
-  geom_point() +
+  geom_point(size=2) +
   geom_vline(data=flower_induc_variety, aes(xintercept = induc_date_50), 
              linetype="dashed", color="darkgrey") +
   facet_wrap(~Latitude+Variety, dir="v") +
   labs(x = "Date", y = "Flower Induction [%]") +
-  theme_bw(base_size = 12, base_family = "Helvetica") +
+  theme_bw(base_size = 18, base_family = "Helvetica") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("output/flower_variety_class.png")
+ggsave("output/flower_variety_class.png", width = 10, height = 10, units = "in")
 
 flower_induc_class <- flower_induc_variety %>%
   group_by(Latitude) %>%  
@@ -316,7 +316,7 @@ ggplot(grain_summary, aes(x=PlantingDate, y=avg_grain_dry)) +
   facet_grid(.~Variety) +
   theme_bw(base_size = 12, base_family = "Helvetica") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("output/grain_summary.png")
+ggsave("output/grain_summary.png", width = 10, height = 5, units = "in")
 
 ### Fiber Harvest
 fiber_data <- collect_data("FiberHarvest_GM", dates$Experiment[1:2])
@@ -346,7 +346,7 @@ ggplot(fiber_summary, aes(x=PlantingDate, y=avg_fiber_dry)) +
   facet_grid(.~Variety) +
   theme_bw(base_size = 12, base_family = "Helvetica") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
-ggsave("output/fiber_summary.png")
+ggsave("output/fiber_summary.png", width = 10, height = 5, units = "in")
 
 ### Summary Table
 
